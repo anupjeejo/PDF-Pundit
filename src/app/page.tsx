@@ -1,3 +1,4 @@
+import FileUpload from '@/components/FileUpload';
 import { Button } from '@/components/ui/button';
 import { UserButton, auth } from '@clerk/nextjs'
 import { LogIn } from 'lucide-react';
@@ -13,7 +14,7 @@ export default async function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center">
-              <h1 className="mr-3 text-5xl font-semibold">Understand any PDF with PDF Pundit</h1>
+              <h1 className="mr-3 text-5xl font-semibold">Understand any PDF with <br/>PDF-Pundit</h1>
               <UserButton afterSignOutUrl="/" />
             </div>
 
@@ -29,7 +30,7 @@ export default async function Home() {
             <div className='w-full mt-4'>
               {
                 isAuth ? (
-                  <h1>File-upload</h1>
+                  <FileUpload/>
                 ):
                 (
                   <Link href="/sign-in">
