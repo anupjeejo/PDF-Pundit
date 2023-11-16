@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "set NODE_OPTIONS='--max-old-space-size=8192' && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,8 +11,11 @@
   "dependencies": {
     "@clerk/nextjs": "^4.26.2",
     "@neondatabase/serverless": "^0.6.0",
+    "@pinecone-database/doc-splitter": "^0.0.1",
+    "@pinecone-database/pinecone": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-query": "^5.8.4",
+    "@types/md5": "^2.3.5",
     "aws-sdk": "^2.1494.0",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
@@ -20,8 +23,12 @@
     "dotenv": "^16.3.1",
     "drizzle-kit": "^0.20.2",
     "drizzle-orm": "^0.29.0",
+    "langchain": "^0.0.189",
     "lucide-react": "^0.292.0",
+    "md5": "^2.3.0",
     "next": "14.0.1",
+    "openai-edge": "^1.2.2",
+    "pdf-parse": "^1.1.1",
     "pg": "^8.11.3",
     "react": "^18",
     "react-dom": "^18",

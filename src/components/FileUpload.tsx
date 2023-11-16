@@ -7,10 +7,11 @@ import React, { useState} from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 function FileUpload() {
     const [uploading, setUploading] = useState(false)
-
+    const router = useRouter()
     const { mutate, isLoading } = useMutation({
         mutationFn: async ({
             file_key,
@@ -50,9 +51,10 @@ function FileUpload() {
             }
 
             mutate(data, {
-                onSuccess: (data) => {
-                    toast.success("Done")
-                    console.log(data);
+                onSuccess: ( { chat_id } ) => {
+                    toast.success("Chat created")
+                    console.log(chat_id);
+                    router.push(`/chat/${chat_id}`);
                 },
                 onError: (err) => {
                     toast.error("error")
