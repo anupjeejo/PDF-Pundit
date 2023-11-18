@@ -49,7 +49,7 @@ export async function loadS3IntoPincone(fileKey: string) {
     //await namespace.upsert(vectors);
     await pineconeIndex.upsert(vectors);
     //pinconeUtils.chunkedUpsert(pineconeIndex, vectors, namespace, 10)
-    
+    console.log('Insertion into pincone sucessful');
     return documents[0];
 }
 

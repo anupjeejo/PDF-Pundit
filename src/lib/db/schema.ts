@@ -19,3 +19,5 @@ export const messages = pgTable("messages", {
     createdAt: timestamp("created_at").notNull().defaultNow(),
     role: userTypeEnum("role").notNull(),
 })
+
+export type DrizzleChat = typeof chats.$inferSelect;
