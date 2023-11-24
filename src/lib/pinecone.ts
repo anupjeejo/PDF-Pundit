@@ -42,8 +42,7 @@ export async function loadS3IntoPincone(fileKey: string) {
     //Uploading vectors to pincone
     const client = await getPineconeClient();
     
-    //const pineconeIndex = await client.Index('pdf-pundit')
-    const pineconeIndex = await client.index("talkpdf");
+    const pineconeIndex = await client.Index('pdf-pundit')
     //const namespace = pineconeIndex.namespace(convertToAscii(fileKey));
     console.log('inserting vectors into pincone');
     console.log('index name: ', pineconeIndex)
