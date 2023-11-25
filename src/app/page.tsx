@@ -1,25 +1,44 @@
 import FileUpload from '@/components/FileUpload';
 import { Button } from '@/components/ui/button';
+import { db } from '@/lib/db';
+import { chats } from '@/lib/db/schema';
 import { UserButton, auth } from '@clerk/nextjs'
-import { LogIn } from 'lucide-react';
+import { eq } from 'drizzle-orm';
+import { ArrowRight, LogIn } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function Home() {
   const { userId } = await auth();
   const isAuth = !!userId;
+  let firstChat;
   
+  if (userId) {
+    firstChat = await db.select().from(chats).where(eq(chats.userId, userId));
+    if (firstChat) {
+      firstChat = firstChat[0];
+    }
+  }
+
   return (
-    <div className='w-screen min-h-screen bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400'>
-      <div className="w-screen min-h-screen bg-gradient-to-r from-rose-100 to-teal-100">
+      <div className="flex min-h-screen w-screen bg-gradient-to-r from-rose-100 to-teal-100">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex flex-col items-center text-center">
+            
             <div className="flex items-center">
               <h1 className="mr-3 text-5xl font-semibold">Understand any PDF with <br/>PDF-Pundit</h1>
               <UserButton afterSignOutUrl="/" />
             </div>
 
             <div className='flex mt-2'>
-              { isAuth && <Button>Go to chats</Button>}
+              { 
+                isAuth && firstChat && (
+                  <Link href={`/chat/${firstChat.id}`}>
+                    <Button>
+                      Go to chats <ArrowRight className="ml-2" />
+                    </Button>
+                  </Link>
+                )
+              }
             </div>
 
             <p className="max-w-xl mt-1 text-lg text-slate-600">
@@ -42,9 +61,9 @@ export default async function Home() {
                 )
               }
             </div>
+
           </div>
         </div>
       </div>
-    </div>
   )
 }

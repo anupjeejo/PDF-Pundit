@@ -1,4 +1,3 @@
-import React from 'react'
 import { redirect } from "next/navigation"
 import { auth } from '@clerk/nextjs'
 import { chats } from '@/lib/db/schema'
@@ -39,21 +38,20 @@ const ChatPage = async ({ params: { chatId }}: Props) => {
     const currentChat = _chats.find(chat => chat.id === parseInt(chatId))
 
   return (
-    <div className='flex max-h-screen overflow-scroll'>
-        <div className='flex w-full max-h-screen overflow-scroll'>
+    <div>
+        <div className="flex h-full w-full">
             {/* Chat Sidebar */}
-            <div className='flex-[1] max-w-xs'>
+            <div className="h-full flex-[2]">
                 <ChatSideBar chats={_chats} chatId={parseInt(chatId)}/>
             </div>
 
             {/* PDF Viewer */}
-            <div className='max-h-screen p-4 overflow-scroll flex-[5]'>
-                {currentChat?.pdfUrl}
+            <div className="flex-[5] p-4 h-full">
                 <PDFViewer pdf_url={currentChat?.pdfUrl || ''}/>
             </div>
 
             {/* Chat Component */}
-            <div className='flex-[3] border-l-4 border-l-slate-200'>
+            <div className="h-full flex-[3] border-l-4 border-l-slate-200">
                 <ChatComponent chatId={parseInt(chatId)}/>
             </div>
         </div>

@@ -15,7 +15,7 @@ const ChatSideBar = ({ chats, chatId}: Props) => {
   return (
     <>
         {/* Chat sidebar wrapper */}
-        <div className='w-full h-screen p-4 text-gray-200 bg-gray-900'>
+        <div className='h-full soff p-4 text-gray-200 bg-gray-900'>
             
             {/* New Chat Button */}
             <Link href="/">
@@ -26,16 +26,16 @@ const ChatSideBar = ({ chats, chatId}: Props) => {
             </Link>
 
             {/* Chat History */}
-            <div className='flex flex-col gap-2 mt-4'>
+            <div className='flex-col pb-20 gap-2 mt-4'>
                 {
                     chats.map((chat) => (
                         <Link key={chat.id} href={`/chat/${chat.id}`}>
                             <div className={cn("rounded-lg p-3 text-slate-300 flex items-center", {
                                 "bg-blue-800 text-white": chat.id === chatId,
-                                "gover:text-white": chat.id !== chatId
+                                "hover:text-white": chat.id !== chatId
                             })}>
                                 <MessageCircle className='mr-2'/>
-                                <p className='w-full overflow-hidden texxt-sm truncate whitespace-nowrap text-ellipsis'>
+                                <p className='w-full overflow-hidden text-sm truncate whitespace-nowrap text-ellipsis'>
                                     {chat.pdfName}
                                 </p>
                             </div>
@@ -45,13 +45,13 @@ const ChatSideBar = ({ chats, chatId}: Props) => {
             </div>
             
             {/* Chat sidebar footer */}
-            <div className='absolute bottom-4 left-4'>
+            {/* < div className='absolute bottom-4 left-4'>
                 <div className='flex items-center gap-2 text-sm text-slate-500 flex-wrap'>
-                    <Link href='/'>Home</Link>
-                    <Link href='/'>Source</Link>
+                    <Link href='/'>Home</Link> */}
+                    {/* <Link href='/'>Source</Link> */}
                     {/* Stripe Button */}
-                </div>
-            </div>
+            {/* </div> */}
+            {/* </div> */}
         </div>
     </>
   )

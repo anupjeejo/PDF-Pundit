@@ -2,7 +2,7 @@
 
 import { uploadToS3 } from '@/lib/s3';
 import axios from 'axios';
-import { Inbox } from 'lucide-react';
+import { Inbox, Loader2 } from 'lucide-react';
 import React, { useState} from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useMutation } from '@tanstack/react-query'
@@ -80,6 +80,7 @@ function FileUpload() {
             {
                 uploading || isLoading ?
                 <>
+                    <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
                     <p className='mt-2 test-sm test-slate-400'>
                         Loading...
                     </p>
