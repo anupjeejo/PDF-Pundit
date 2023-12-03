@@ -16,7 +16,9 @@ const ChatComponent = ({ chatId }: Props) => {
     const { data, isLoading } = useQuery({
         queryKey: ["chat", chatId],
         queryFn: async () => {
+            console.log("get messages called:")
             const response = await axios.post<Message[]>('/api/get-messages', {chatId})
+            console.log("messages response: ", response.data)
             return response.data;
         }
     })
@@ -31,6 +33,7 @@ const ChatComponent = ({ chatId }: Props) => {
 
     React.useEffect(() => {
         const messageContainer = document.getElementById("message-container")
+        console.log("inside useEffect")
         if(messageContainer) {
             messageContainer.scrollTo({
                 top: messageContainer.scrollHeight,

@@ -31,17 +31,16 @@ export async function loadS3IntoPincone(fileKey: string) {
 
     //Parse pdf flie and retrive its data
     const loader = new PDFLoader(file_name);
-    const pages = await loader.load() as PDFPage[];
-
+    const pages = (await loader.load()) as PDFPage[];
+    
     //Split the pdf into segements
     const documents = await Promise.all(pages.map(prepareDocument));
-
+    console.log("Pages :", documents)
     //Vectorize and embed individual docs
     const vectors = await Promise.all(documents.flat().map(embedDocument));
-
+    console.log("vectors :", vectors)
     //Uploading vectors to pincone
     const client = await getPineconeClient();
-    
     const pineconeIndex = await client.Index('pdf-pundit')
     //const namespace = pineconeIndex.namespace(convertToAscii(fileKey));
     console.log('inserting vectors into pincone');
