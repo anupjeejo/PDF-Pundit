@@ -25,8 +25,15 @@ export async function getMatchesFromEmbeddings(
       //   includeMetadata: true,
       // });
 
+      // const queryResult = await pineconeIndex.query({
+      //   vector: embeddings,
+      //   topK: 5,
+      //   includeMetadata: true,
+      // })
+
       const queryResult = await pineconeIndex.query({
         vector: embeddings,
+        filter: { fileKey: { $eq: fileKey } },
         topK: 5,
         includeMetadata: true,
       })

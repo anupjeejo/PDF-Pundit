@@ -20,7 +20,7 @@ export default async function Home() {
   }
 
   return (
-      <div className="flex min-h-screen w-screen bg-gradient-to-r from-blue-500 to-blue-600">
+      <div className="flex min-h-screen w-screen bg-[conic-gradient(at_bottom_right,_var(--tw-gradient-stops))] from-white via-indigo-400 to-indigo-900">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex flex-col items-center text-center">
             

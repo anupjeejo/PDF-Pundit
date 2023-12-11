@@ -70,7 +70,7 @@ const FileUpload = () => {
       <div
         {...getRootProps({
           className:
-            "border-dashed border-2 rounded-xl cursor-pointer bg-gray-50 py-8 flex justify-center items-center flex-col",
+          "border-dashed border-2 rounded-xl cursor-pointer py-8 flex justify-center items-center flex-col bg-indigo-300",
         })}
       >
         <input {...getInputProps()} />
@@ -79,13 +79,13 @@ const FileUpload = () => {
             {/* loading state */}
             <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
             <p className="mt-2 text-sm text-slate-400">
-              Spilling Tea to GPT...
+            Uploading File to Pundit...
             </p>
           </>
         ) : (
           <>
             <Inbox className="w-10 h-10 text-blue-500" />
-            <p className="mt-2 text-sm text-slate-400">Drop PDF Here</p>
+            <p className="mt-2 text-sm text-slate-600">Drop PDF Here</p>
           </>
         )}
       </div>
